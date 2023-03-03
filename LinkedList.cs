@@ -10,23 +10,58 @@ namespace DataStructure
     {
         internal Node head;
 
-        public void Append(int data)
+        internal void Add(int data)
         {
             Node node = new Node(data);
-            if (head == null)
+            if (this.head == null)
             {
-                head = node;
+                this.head = node;
             }
             else
             {
-                Node node1 = head;
-                while (node1.next != null)
+                Node temp = head;
+                while (temp.next != null)
+                {
+                    temp = temp.next;
+                }
+                temp.next = node;
+
+
+            }
+
+            Console.WriteLine("{0} inserted into Linked List ", node.data);
+        }
+
+        public void InsertNode(int position, int data)
+        {
+            var newnode = new Node(data);
+
+            newnode.data = data;
+            newnode.next = this.head;
+            if (position < 1)
+            {
+                Console.WriteLine("invalid data");
+            }
+            if (position == 1)
+            {
+                newnode.next = this.head;
+                head = newnode;
+            }
+            else
+            {
+                Node node1 = new Node(data);
+                node1 = this.head;
+
+                while (position > 2)
                 {
                     node1 = node1.next;
+                    position--;
                 }
-                node1.next = node;
+
+                newnode.next = node1.next;
+                node1.next = newnode;
+
             }
-            Console.WriteLine("{0} inserted into Linked List ", node.data);
         }
 
         internal void Display()
