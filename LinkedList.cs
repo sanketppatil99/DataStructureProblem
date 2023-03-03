@@ -10,23 +10,20 @@ namespace DataStructure
     {
         internal Node head;
 
-        internal void Add(int data)
+        public void AddInReverseOrder(int data)
         {
-            Node node = new Node(data);
+            Node newNode = new Node(data);
             if (this.head == null)
             {
-                this.head = node;
+                this.head = newNode;
             }
             else
             {
-                Node temp = head;
-                while (temp.next != null)
-                {
-                    temp = temp.next;
-                }
-                temp.next = node;
+                Node temp = this.head;
+                head = newNode;
+                head.next = temp;
             }
-            Console.WriteLine("{0} inserted into linked list ", node.data);
+            Console.WriteLine("{0} inserted into linked list  ", newNode.data);
         }
 
         internal void Display()
